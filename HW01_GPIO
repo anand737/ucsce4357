@@ -1,0 +1,20 @@
+I spent around 14 hours trying to set up environment and trying out the
+the first homework to toggle to GPIO.
+
+The pin which was assigned was GPIO pin 11.
+Reviewing the documentation GPIO pin 11 corresponds to P0.11
+
+Steps:iset
+
+
+1. Select GPIO pin select PINSEL0 (0x4002 C000) bits 23:22 should be 00 for GPIO function.
+   PINSEL0 = PINSEL0 & 0x7FFFFFFF
+
+2. Set port direction as output. FIO0DIR <= 0x2009 C000
+   FIO0DIR =  (FIO0DIR & 0x0 ) | 0x0000 0800
+
+3. Set GPIO11 to 1 FIO0SET (0x2009C018)
+   FIO0SET =  (FIO0SET & 0x0 ) | 0x0000 0800
+
+4. Set GPIO10 to 0 FIO0CLR (0x2009C01C)
+   FIO0CLR =  (FIO0CLR & 0x0 ) | 0x0000 0800
